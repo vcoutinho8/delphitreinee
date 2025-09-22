@@ -8,7 +8,8 @@ uses
   pessoa.view in 'src\view\pessoa.view.pas',
   listadepessoas.view in 'src\view\listadepessoas.view.pas' {frmListaCadastro},
   atualizarinformacoes.view in 'src\view\atualizarinformacoes.view.pas' {frmAtualizarDados},
-  fila.view in 'src\view\fila.view.pas' {frmFila};
+  fila.view in 'src\view\fila.view.pas' {frmFila},
+  discionario.view in 'src\view\discionario.view.pas' {frmDiscionario};
 
 {$R *.res}
 
@@ -18,5 +19,6 @@ begin
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmAtualizarDados, frmAtualizarDados);
   Application.CreateForm(TfrmFila, frmFila);
+  Application.CreateForm(TfrmDiscionario, frmDiscionario);
   Application.Run;
 end.
