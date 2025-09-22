@@ -88,7 +88,7 @@ begin
       frmListaCadastro := TfrmListaCadastro.Create(nil);
       frmListaCadastro.ShowModal;
   finally
-    frmListaCadastro.Free;
+    FreeAndNil(frmListaCadastro);
   end;
 end;
 

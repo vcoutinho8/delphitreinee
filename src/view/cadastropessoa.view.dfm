@@ -21,7 +21,6 @@ object frmCadastroPessoa: TfrmCadastroPessoa
     Height = 405
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 306
     object pnlEntrarSAir: TPanel
       Left = 1
       Top = 330
@@ -32,7 +31,6 @@ object frmCadastroPessoa: TfrmCadastroPessoa
       Color = clTeal
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 304
       object BCadastro: TSpeedButton
         AlignWithMargins = True
         Left = 50
@@ -73,7 +71,6 @@ object frmCadastroPessoa: TfrmCadastroPessoa
       Color = clTeal
       ParentBackground = False
       TabOrder = 1
-      ExplicitWidth = 304
       object Image1: TImage
         Left = 1
         Top = 1
@@ -346,7 +343,7 @@ object frmCadastroPessoa: TfrmCadastroPessoa
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitWidth = 298
+      ExplicitLeft = 6
       object Label2: TLabel
         Left = 16
         Top = 74
@@ -401,7 +398,7 @@ object frmCadastroPessoa: TfrmCadastroPessoa
       end
       object cxGrid1: TcxGrid
         Left = 328
-        Top = 3
+        Top = 2
         Width = 287
         Height = 243
         TabOrder = 4
@@ -412,14 +409,14 @@ object frmCadastroPessoa: TfrmCadastroPessoa
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
+          object cxGrid1DBTableView1Matricula: TcxGridDBColumn
+            DataBinding.FieldName = 'Matricula'
+          end
           object cxGrid1DBTableView1Nome: TcxGridDBColumn
             DataBinding.FieldName = 'Nome'
           end
           object cxGrid1DBTableView1CargoAtual: TcxGridDBColumn
             DataBinding.FieldName = 'Cargo Atual'
-          end
-          object cxGrid1DBTableView1Matricula: TcxGridDBColumn
-            DataBinding.FieldName = 'Matricula'
           end
           object cxGrid1DBTableView1Salario: TcxGridDBColumn
             DataBinding.FieldName = 'Salario'
@@ -455,8 +452,24 @@ object frmCadastroPessoa: TfrmCadastroPessoa
     end
   end
   object dsDados: TDataSource
-    DataSet = cdsDados
+    DataSet = FDQuery1
     Left = 270
     Top = 59
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'User_Name=postgres'
+      'Database=treinee'
+      'Password=@PGl2013A'
+      'DriverID=PG')
+    Left = 276
+    Top = 164
+  end
+  object FDQuery1: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from funcionario;')
+    Left = 276
+    Top = 228
   end
 end

@@ -10,7 +10,9 @@ uses
   Datasnap.DBClient, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxNavigator, dxDateRanges, dxScrollbarAnnotations, cxDBData, cxGridLevel,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxClasses,
-  cxGridCustomView, cxGrid;
+  cxGridCustomView, cxGrid, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Phys,
+  FireDAC.Comp.Client, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys.PG, FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet;
 
 type
   TfrmCadastroPessoa = class(TForm)
@@ -38,10 +40,12 @@ type
     dsDados: TDataSource;
     cdsDadosMatricula: TIntegerField;
     cdsDadosSalario: TCurrencyField;
+    FDConnection1: TFDConnection;
+    cxGrid1DBTableView1Matricula: TcxGridDBColumn;
     cxGrid1DBTableView1Nome: TcxGridDBColumn;
     cxGrid1DBTableView1CargoAtual: TcxGridDBColumn;
-    cxGrid1DBTableView1Matricula: TcxGridDBColumn;
     cxGrid1DBTableView1Salario: TcxGridDBColumn;
+    FDQuery1: TFDQuery;
     procedure BSair2Click(Sender: TObject);
     procedure BCadastroClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -65,16 +69,35 @@ uses
 procedure TfrmCadastroPessoa.FormCreate(Sender: TObject);
 begin
   cdsDados.CreateDataSet;
+
+  FDQuery1.SQL.Text := 'SELECT * FROM funcionario';
+  FDQuery1.Open;
+
 end;
 
 procedure TfrmCadastroPessoa.BCadastroClick(Sender: TObject);
 begin
-  cdsDados.Append;
-  cdsDadosMatricula.AsInteger  := StrToIntDef(cxTextMatricula.Text, 1);
-  cdsDadosNOME.AsString     := cxTextNome.Text;
-  cdsDadosCargoAtual.AsString := cxTextCargoAtual.Text;
-  cdsDadosSalario.AsCurrency    := StrToCurrDef(cxTextSalario.Text, 1);
-  cdsDados.Post;
+ try
+      FDQuery1.SQL.Text :=
+    'INSERT INTO public.funcionario (matricula, nome, cargo, salario) ' +
+    'VALUES (:matricula, :nome, :cargo, :salario)';
+
+    FDQuery1.ParamByName('matricula').AsInteger := StrToInt(cxTextMatricula.Text);
+    FDQuery1.ParamByName('nome').AsString := cxTextNome.Text;
+    FDQuery1.ParamByName('cargo').AsString := cxTextCargoAtual.Text;
+    FDQuery1.ParamByName('salario').AsCurrency := StrToCurr(cxTextSalario.Text);
+
+    FDQuery1.ExecSQL;
+
+    ShowMessage('Funcionario inserido com sucesso!');
+
+    // Recarrega os dados
+    FDQuery1.SQL.Text := 'SELECT * FROM funcionario';
+    FDQuery1.Open;
+  except
+    on E: Exception do
+      ShowMessage('Erro ao inserir: ' + E.Message);
+  end;
 
   ShowMessage('Cadastro realizado com sucesso!' + sLineBreak +
               'Matricula: ' + (cxTextMatricula.Text) + sLineBreak +
