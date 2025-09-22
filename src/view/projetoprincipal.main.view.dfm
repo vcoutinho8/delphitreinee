@@ -14,12 +14,21 @@ object frmPrincipal: TfrmPrincipal
   PixelsPerInch = 96
   TextHeight = 13
   object Button1: TButton
-    Left = 256
-    Top = 184
+    Left = 0
+    Top = 8
     Width = 105
     Height = 57
-    Caption = 'Button1'
+    Caption = 'Sistema RH'
     TabOrder = 0
     OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 136
+    Top = 8
+    Width = 105
+    Height = 57
+    Caption = 'Fila'
+    TabOrder = 1
+    OnClick = Button2Click
   end
 end
