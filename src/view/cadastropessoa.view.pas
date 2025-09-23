@@ -33,14 +33,14 @@ type
     cxGrid1DBTableView1: TcxGridDBTableView;
     cxGrid1Level1: TcxGridLevel;
     cdsDados: TClientDataSet;
+    cdsDadosMatricula: TIntegerField;
     cdsDadosNome: TStringField;
     cdsDadosCargoAtual: TStringField;
-    dsDados: TDataSource;
-    cdsDadosMatricula: TIntegerField;
     cdsDadosSalario: TCurrencyField;
+    dsDados: TDataSource;
+    cxGrid1DBTableView1Matricula: TcxGridDBColumn;
     cxGrid1DBTableView1Nome: TcxGridDBColumn;
     cxGrid1DBTableView1CargoAtual: TcxGridDBColumn;
-    cxGrid1DBTableView1Matricula: TcxGridDBColumn;
     cxGrid1DBTableView1Salario: TcxGridDBColumn;
     procedure BSair2Click(Sender: TObject);
     procedure BCadastroClick(Sender: TObject);
@@ -89,7 +89,6 @@ procedure TfrmCadastroPessoa.BSair2Click(Sender: TObject);
 begin
   Close;
 end;
-
 
 
 end.

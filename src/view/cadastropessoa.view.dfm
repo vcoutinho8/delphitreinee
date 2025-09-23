@@ -21,7 +21,6 @@ object frmCadastroPessoa: TfrmCadastroPessoa
     Height = 405
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 306
     object pnlEntrarSAir: TPanel
       Left = 1
       Top = 330
@@ -32,7 +31,6 @@ object frmCadastroPessoa: TfrmCadastroPessoa
       Color = clTeal
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 304
       object BCadastro: TSpeedButton
         AlignWithMargins = True
         Left = 50
@@ -73,7 +71,6 @@ object frmCadastroPessoa: TfrmCadastroPessoa
       Color = clTeal
       ParentBackground = False
       TabOrder = 1
-      ExplicitWidth = 304
       object Image1: TImage
         Left = 1
         Top = 1
@@ -346,7 +343,7 @@ object frmCadastroPessoa: TfrmCadastroPessoa
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitWidth = 298
+      ExplicitLeft = 2
       object Label2: TLabel
         Left = 16
         Top = 74
@@ -400,9 +397,9 @@ object frmCadastroPessoa: TfrmCadastroPessoa
         Width = 257
       end
       object cxGrid1: TcxGrid
-        Left = 328
+        Left = 303
         Top = 3
-        Width = 287
+        Width = 322
         Height = 243
         TabOrder = 4
         object cxGrid1DBTableView1: TcxGridDBTableView
@@ -412,17 +409,21 @@ object frmCadastroPessoa: TfrmCadastroPessoa
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
+          object cxGrid1DBTableView1Matricula: TcxGridDBColumn
+            DataBinding.FieldName = 'Matricula'
+            Width = 54
+          end
           object cxGrid1DBTableView1Nome: TcxGridDBColumn
             DataBinding.FieldName = 'Nome'
+            Width = 108
           end
           object cxGrid1DBTableView1CargoAtual: TcxGridDBColumn
             DataBinding.FieldName = 'Cargo Atual'
-          end
-          object cxGrid1DBTableView1Matricula: TcxGridDBColumn
-            DataBinding.FieldName = 'Matricula'
+            Width = 115
           end
           object cxGrid1DBTableView1Salario: TcxGridDBColumn
             DataBinding.FieldName = 'Salario'
+            Width = 81
           end
         end
         object cxGrid1Level1: TcxGridLevel
@@ -437,8 +438,8 @@ object frmCadastroPessoa: TfrmCadastroPessoa
     IndexDefs = <>
     Params = <>
     StoreDefs = True
-    Left = 206
-    Top = 59
+    Left = 462
+    Top = 11
     object cdsDadosMatricula: TIntegerField
       FieldName = 'Matricula'
     end
@@ -456,7 +457,7 @@ object frmCadastroPessoa: TfrmCadastroPessoa
   end
   object dsDados: TDataSource
     DataSet = cdsDados
-    Left = 270
-    Top = 59
+    Left = 550
+    Top = 11
   end
 end
